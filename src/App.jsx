@@ -5,7 +5,7 @@ function App() {
       <header className="site-header">
         <div className="container nav">
           <a href="#" className="brand">
-            {/* <img src={ddLogo} alt="DataDrift logo" className="brand-logo" /> */}
+            <img src={ddLogo} alt="DataDrift logo" className="brand-logo" />
             <span className="brand-name">DataDrift Studio</span>
           </a>
           <nav className="nav-links">
