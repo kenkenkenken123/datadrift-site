@@ -26,8 +26,9 @@ function App() {
                 We build software and data experiences that help teams move faster.
               </h1>
               <p className="hero-text">
-                We provide application development, data visualization, web development,
-                reporting solutions, and tailored digital products for modern businesses.
+                We provide application development, web development, data analysis,
+                automation, reporting solutions,
+                and tailored digital products for modern businesses.
               </p>
               <div className="hero-actions">
                 <a href="#contact" className="btn btn-dark">Book a Consultation</a>
@@ -42,7 +43,7 @@ function App() {
               </div>
               <div className="metric-card">
                 <span className="metric-label">Core Services</span>
-                <strong>Apps, Dashboards, Web Platforms</strong>
+                <strong>Apps, Data, Web Platforms</strong>
               </div>
               <div className="metric-card">
                 <span className="metric-label">Working Style</span>
@@ -184,7 +185,7 @@ function App() {
               Tell us what you are building, what problems you need to solve,
               and what kind of timeline you have in mind.
             </p>
-            <a href="mailto:hello@ffsoftware.com" className="btn btn-dark">
+            <a href="mailto:support@datadriftstudio.com" className="btn btn-dark">
               Email Us
             </a>
           </div>
