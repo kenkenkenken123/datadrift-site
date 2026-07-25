@@ -1,5 +1,42 @@
-import ddLogo from './assets/datadrift-logo.png';
+import { useEffect, useState } from 'react'
+
 function App() {
+  const phrases = [
+    'Mobile Apps',
+    'Web Apps',
+    'Data Solutions',
+    'AI Chatbots',
+    'ML Models',
+  ]
+  const [phraseIndex, setPhraseIndex] = useState(0)
+  const [isVisible, setIsVisible] = useState(true)
+  const [reduceMotion, setReduceMotion] = useState(false)
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+    setReduceMotion(mediaQuery.matches)
+
+    const handleChange = (event) => setReduceMotion(event.matches)
+    mediaQuery.addEventListener('change', handleChange)
+
+    return () => mediaQuery.removeEventListener('change', handleChange)
+  }, [])
+
+  useEffect(() => {
+    if (reduceMotion) return
+
+    const interval = setInterval(() => {
+      setIsVisible(false)
+
+      setTimeout(() => {
+        setPhraseIndex((prev) => (prev + 1) % phrases.length)
+        setIsVisible(true)
+      }, 260)
+    }, 3200)
+
+    return () => clearInterval(interval)
+  }, [reduceMotion, phrases.length])
+
   return (
     <>
       <header className="site-header">
@@ -21,13 +58,25 @@ function App() {
           <div className="container hero-grid">
             <div className="hero-copy">
               <p className="eyebrow">Software · Data · Web</p>
-              <h1>
-                We build software and data experiences that help teams move faster.
-              </h1>
+              <h1 className="hero-title-premium">
+            <span className="hero-title-line">We build</span>
+
+            <span className="hero-phrase-shell" aria-live="polite">
+              <span
+                className={`hero-phrase ${isVisible || reduceMotion ? 'is-visible' : 'is-hidden'}`}
+              >
+                {phrases[phraseIndex]}
+              </span>
+            </span>
+
+            <span className="hero-title-line">for modern business operations.</span>
+          </h1>
               <p className="hero-text">
-                We provide application development, web development, data analysis,
+                {/* We provide application development, web development, data analysis,
                 automation, reporting solutions,
-                and tailored digital products for modern businesses.
+                and tailored digital products for modern businesses. */}
+                Our team brings expertise across different areas. Share your idea
+with us, and we will help shape the right solution and deliver it with care.
               </p>
               <div className="hero-actions">
                 <a href="#contact" className="btn btn-dark">Book a Consultation</a>
