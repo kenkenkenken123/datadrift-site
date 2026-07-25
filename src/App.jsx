@@ -1,5 +1,42 @@
-import ddLogo from './assets/datadrift-logo.png';
+import { useEffect, useState } from 'react'
+
 function App() {
+  const phrases = [
+    'Mobile Apps',
+    'Web Apps',
+    'Data Solutions',
+    'AI Chatbots',
+    'ML Models',
+  ]
+  const [phraseIndex, setPhraseIndex] = useState(0)
+  const [isVisible, setIsVisible] = useState(true)
+  const [reduceMotion, setReduceMotion] = useState(false)
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+    setReduceMotion(mediaQuery.matches)
+
+    const handleChange = (event) => setReduceMotion(event.matches)
+    mediaQuery.addEventListener('change', handleChange)
+
+    return () => mediaQuery.removeEventListener('change', handleChange)
+  }, [])
+
+  useEffect(() => {
+    if (reduceMotion) return
+
+    const interval = setInterval(() => {
+      setIsVisible(false)
+
+      setTimeout(() => {
+        setPhraseIndex((prev) => (prev + 1) % phrases.length)
+        setIsVisible(true)
+      }, 260)
+    }, 3200)
+
+    return () => clearInterval(interval)
+  }, [reduceMotion, phrases.length])
+
   return (
     <>
       <header className="site-header">
@@ -21,13 +58,25 @@ function App() {
           <div className="container hero-grid">
             <div className="hero-copy">
               <p className="eyebrow">Software · Data · Web</p>
-              <h1>
-                We build software and data experiences that help teams move faster.
-              </h1>
+              <h1 className="hero-title-premium">
+            <span className="hero-title-line">We build</span>
+
+            <span className="hero-phrase-shell" aria-live="polite">
+              <span
+                className={`hero-phrase ${isVisible || reduceMotion ? 'is-visible' : 'is-hidden'}`}
+              >
+                {phrases[phraseIndex]}
+              </span>
+            </span>
+
+            <span className="hero-title-line">for modern business operations.</span>
+          </h1>
               <p className="hero-text">
-                We provide application development, web development, data analysis,
+                {/* We provide application development, web development, data analysis,
                 automation, reporting solutions,
-                and tailored digital products for modern businesses.
+                and tailored digital products for modern businesses. */}
+                Our team brings expertise across different areas. Share your idea
+with us, and we will help shape the right solution and deliver it with care.
               </p>
               <div className="hero-actions">
                 <a href="#contact" className="btn btn-dark">Book a Consultation</a>
@@ -60,32 +109,36 @@ function App() {
               <article className="service-card">
                 <h3>Application Development</h3>
                 <p>
-                  Custom internal tools, workflow systems, and business applications
-                  designed around your actual operations.
+                  {/* Custom internal tools, workflow systems, and business applications
+                  designed around your actual operations. */}
+                  From tiny task-saving scripts and desktop helpers to mobile sidekicks 
+                  and custom tools built to make your workday easier.
                 </p>
               </article>
 
               <article className="service-card">
-                <h3>Data Visualization</h3>
+                <h3>Data Solutions</h3>
                 <p>
-                  Dashboards and reporting solutions that turn complex data into
-                  clear decisions for leadership and operations teams.
+                  From BI dashboards to ML-powered solutions and end-to-end ETL pipelines, 
+                  we deliver data solutions that help teams work smarter.
                 </p>
               </article>
 
               <article className="service-card">
                 <h3>Web Development</h3>
                 <p>
-                  Modern websites and web platforms with responsive design,
-                  maintainable code, and clean user experience.
+                  {/* Modern websites and web platforms with responsive design,
+                  maintainable code, and clean user experience. */}
+                  Low-code storefronts for your e-shop, 
+                  custom one-pagers for your brand, 
+                  or full-code web platforms built to grow with your business.
                 </p>
               </article>
 
               <article className="service-card">
-                <h3>System Integration</h3>
+                <h3>Need Something Different?</h3>
                 <p>
-                  Connect business systems, automate data flow, and reduce manual work
-                  across departments.
+                  If you can explain it, we can probably build it.
                 </p>
               </article>
             </div>
