@@ -109,32 +109,36 @@ with us, and we will help shape the right solution and deliver it with care.
               <article className="service-card">
                 <h3>Application Development</h3>
                 <p>
-                  Custom internal tools, workflow systems, and business applications
-                  designed around your actual operations.
+                  {/* Custom internal tools, workflow systems, and business applications
+                  designed around your actual operations. */}
+                  From tiny task-saving scripts and desktop helpers to mobile sidekicks 
+                  and custom tools built to make your workday easier.
                 </p>
               </article>
 
               <article className="service-card">
-                <h3>Data Visualization</h3>
+                <h3>Data Solutions</h3>
                 <p>
-                  Dashboards and reporting solutions that turn complex data into
-                  clear decisions for leadership and operations teams.
+                  From BI dashboards to ML-powered solutions and end-to-end ETL pipelines, 
+                  we deliver data solutions that help teams work smarter.
                 </p>
               </article>
 
               <article className="service-card">
                 <h3>Web Development</h3>
                 <p>
-                  Modern websites and web platforms with responsive design,
-                  maintainable code, and clean user experience.
+                  {/* Modern websites and web platforms with responsive design,
+                  maintainable code, and clean user experience. */}
+                  Low-code storefronts for your e-shop, 
+                  custom one-pagers for your brand, 
+                  or full-code web platforms built to grow with your business.
                 </p>
               </article>
 
               <article className="service-card">
-                <h3>System Integration</h3>
+                <h3>Need Something Different?</h3>
                 <p>
-                  Connect business systems, automate data flow, and reduce manual work
-                  across departments.
+                  If you can explain it, we can probably build it.
                 </p>
               </article>
             </div>
