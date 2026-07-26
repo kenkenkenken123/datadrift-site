@@ -1,16 +1,80 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Tech Stack
 
-Currently, two official plugins are available:
+- **Build tool:** Vite
+- **UI library:** React (v19)
+- **Language:** JavaScript (ES Modules)
+- **Linting:** ESLint
+- **Deployment:** Vercel (config present via `vercel.json`) — can also be containerized with the included `Dockerfile` / `docker-compose.yml`
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Local development
 
-## React Compiler
+Prerequisites: Node.js (LTS) and npm
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Install dependencies:
 
-## Expanding the ESLint configuration
+```bash
+npm install
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Start the dev server:
+
+```bash
+npm run dev
+```
+
+Open http://localhost:5173 (Vite default) in your browser.
+
+## Build & Preview
+
+Build for production:
+
+```bash
+npm run build
+```
+
+Preview the production build locally:
+
+```bash
+npm run preview
+```
+
+## Docker (optional)
+
+This repo includes a `Dockerfile` and `docker-compose.yml` for containerized builds and local testing. Use them if you prefer running the app in containers.
+
+Start a development container (docker-compose):
+
+```bash
+docker compose up
+```
+
+Build an image and run a production preview (single-container):
+
+```bash
+docker build -t dd-site .
+docker run --rm -p 5173:5173 dd-site sh -c "npm run build && npm run preview -- --host 0.0.0.0"
+```
+
+Or with docker-compose (one-off preview run):
+
+```bash
+docker compose run --rm --service-ports app sh -c "npm run build && npm run preview -- --host 0.0.0.0"
+```
+
+Note: the default Vite preview server listens on port `5173`; map that port to access the preview at `http://localhost:5173`.
+
+## CI / CD
+
+This project is configured for automatic production deployments. Pushes to the `main` branch will trigger the configured CI/CD pipeline and automatically update the production site (Vercel deployment is configured via `vercel.json`). Adjust your deployment target in your CI/CD provider or Vercel project settings as needed.
+
+## Files of interest
+
+- [vercel.json](vercel.json) — Vercel deployment config
+- [package.json](package.json) — npm scripts and dependencies
+- [vite.config.js](vite.config.js) — Vite configuration
+- [Dockerfile](Dockerfile) / [docker-compose.yml](docker-compose.yml) — container setup
+
+## Notes
+
+If you need CI/CD changed to a different provider, update the deployment configuration and pipeline to run `npm run build` and deploy the generated `dist/` folder on pushes to `main`.
