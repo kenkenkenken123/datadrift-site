@@ -1,5 +1,5 @@
 import { useEffect, useId, useRef, useState } from 'react'
-import ddLogo from './assets/datadrift-logo.png'
+import ddLogo from './assets/image.png'
 
 const DEMO_EMAIL = 'support@datadriftstudio.com'
 const emptyForm = {
